@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1464177533 source:f:\c代码\c源程序\blocks代码库\链表工程测试\main.c
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+
+1478610151 source:f:\c代码\c源程序\blocks 测试\数据结构练习\链表工程测试\main.c
+	"linkList.h"
+
+1482998416 f:\c代码\c源程序\blocks 测试\数据结构练习\链表工程测试\linklist.h
+	<stdio.h>
+	<stdlib.h>
+
+1482998433 source:f:\c代码\c源程序\blocks 测试\数据结构练习\链表工程测试\linklist.c
+	"linkList.h"
+	<malloc.h>
+
+1484479923 source:f:\codesave\c\链表工程测试\main.c
+	"linkList.h"
+
+1484479923 f:\codesave\c\链表工程测试\linklist.h
+	<malloc.h>
+	<stdio.h>
+	<stdlib.h>
+
+1484482008 source:f:\codesave\c\链表工程测试\linklist.c
+	"linkList.h"
+

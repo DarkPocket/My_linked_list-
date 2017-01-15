@@ -1,0 +1,124 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+     int data;//数据部分
+     struct node *next;//指针部分
+}Node;
+typedef Node List;
+//初始化链表
+List* initList();
+//销毁链表
+void destoryList(List *list);
+//插入数据
+void insertData(List *list,int Data);
+//删除数据
+void removeData(List *list,int Data);
+//查找数据
+Node* findData(List *list,int Data);
+//打印链表内容
+void printList(List *list);
+int main()
+{
+        //初始化链表
+        List *list = initList(); 
+        //插入数据
+        for(int i=0; i<10; i++)
+        {
+             insertData(list,i);
+        }
+        printList(list);
+        //查找数据
+        printf("5的地址:%p\n",findData(list,5));
+        printf("10的地址:%p\n",findData(list,10));
+        //删除数据
+        removeData(list,0);
+        printList(list);
+        //销毁链表
+        destoryList(list);
+return 0;
+}
+//初始链表
+List* initList()
+{
+        List *list = (List*)malloc(sizeof(Node));
+        list->data = 0;
+        list->next = NULL;
+        return list;
+}
+//销毁链表
+void destoryList(List *list)
+{
+        Node *pHead = list;//用来记录初始化的链表头结点
+        while(list != NULL)
+        {
+                  //先移到下一个结点
+                  list = list->next;
+                  //释放头结点
+                  free(pHead);
+                  //记录新的头结点
+                 pHead = list;
+         }
+}
+//插入数据(一般都在表尾插入数据)
+void insertData(List *list,int Data)
+{
+         //先分配一个新的结点
+        Node *pNode = (Node*)malloc(sizeof(Node));
+        pNode->data = Data;
+        pNode->next = NULL;
+        //将新结点链接到到尾部
+       while(list->next != NULL)
+       {
+                  list = list->next;//先找到链表的尾结点
+        }
+       list->next = pNode;//将新结点链接到尾结点
+}
+//删除数据(头结点不可删除,不然后面的结点就无法再进行遍历了)
+void removeData(List *list,int Data)
+{
+        //1.查找结点，并记录上一个结点
+        //Node *pPre = NULL;
+        Node *pPre = list;
+        list = list->next;//跳过头结点
+        while(list!= NULL)
+        {
+                 if(list->data == Data)
+                {
+                              break;
+                }
+                pPre = list;
+                list = list->next;
+       }
+       if(list!=NULL)
+       {
+                //2.找到后，将上一个结点和当前结点的下一个结点链接
+                pPre->next = list->next;
+               //3.删除当前结点
+                free(list);
+      }
+}
+//查找数据
+Node* findData(List *list,int Data)
+{
+     while(list!= NULL)
+     {
+                 if(list->data == Data)
+                {
+                      break;
+                }
+               list = list->next;
+      }
+return list;
+}
+//打印链表内容
+void printList(List *list)
+{
+      list = list->next;//跳过头结点
+      while(list!= NULL)
+      {
+               printf("%5d",list->data);
+              list = list->next;
+      }
+      printf("\n");
+}
